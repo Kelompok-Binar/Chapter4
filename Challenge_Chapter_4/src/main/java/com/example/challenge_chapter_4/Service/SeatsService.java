@@ -4,6 +4,9 @@ import com.example.challenge_chapter_4.Model.SeatsEntity;
 import com.example.challenge_chapter_4.Repository.SeatsInterface;
 import com.example.challenge_chapter_4.Repository.StudioInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +17,10 @@ public class SeatsService {
     SeatsInterface R;
     @Autowired
     StudioInterface R1;
-    public List<SeatsEntity> getAll() {
-        return R.findAll();
+    public Page<SeatsEntity> getAll(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+
+        return R.findAll(pageable);
     }
 
     public SeatsEntity getByStudioSeats(char studio, int seats) {

@@ -1,9 +1,12 @@
 package com.example.challenge_chapter_4.Controller;
 
 import com.example.challenge_chapter_4.Model.StudioEntity;
+import com.example.challenge_chapter_4.Response.StudioResponse;
+import com.example.challenge_chapter_4.Response.StudioResponseGenerator;
 import com.example.challenge_chapter_4.Service.StudioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,20 +17,31 @@ import java.util.List;
 public class StudioController {
     @Autowired
     StudioService ss;
+    @Autowired
+    StudioResponseGenerator srg;
 
+    //cara mendapatkan page number dan size ?pageNumber=1&pageSize=2
     @GetMapping
-    public ResponseEntity<List<StudioEntity>> getAll(
+    public StudioResponse<ResponseEntity<List<StudioEntity>>> getAll(
             @RequestParam(defaultValue = "0")int pageNumber,
-            @RequestParam(defaultValue = "10") int pageSize,
-            @RequestParam(defaultValue = "studio_name") String sortBy){
-        Page<StudioEntity> result = ss.getAll(pageNumber, pageSize, sortBy);
-        List<StudioEntity> data = result.getContent();
-        int currentPage = result.getNumber();
-        int totalPages = result.getTotalPages();
-        long totalItems = result.getTotalElements();
-        return ResponseEntity.ok()
-                .header("X-Total-Count", String.valueOf(totalItems))
-                .body(data);
+            @RequestParam(defaultValue = "10") int pageSize){
+
+        try {
+            Page<StudioEntity> result = ss.getAll(pageNumber, pageSize);
+            List<StudioEntity> data = result.getContent();
+//        int currentPage = result.getNumber();
+//        int totalPages = result.getTotalPages();
+            long totalItems = result.getTotalElements();
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("X-Total-Count", String.valueOf(totalItems));
+
+            return srg.succsesResponse(ResponseEntity.ok().headers(headers).body(data),"Sukses Tampil Data");
+        }
+        catch (Exception e){
+            return srg.failedResponse(e.getMessage());
+        }
+
     }
 //    @GetMapping(value = "Studios/{studio}/{nomor_kursi}")
 //    public StudioEntity getByStudio(@PathVariable char studio, @PathVariable Integer nomor_kursi){

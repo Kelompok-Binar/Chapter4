@@ -5,7 +5,13 @@ import com.example.challenge_chapter_4.Response.FilmResponse;
 import com.example.challenge_chapter_4.Response.FilmResponseGenerator;
 import com.example.challenge_chapter_4.Service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -41,10 +47,18 @@ public class FilmController {
     FilmResponseGenerator frg;
 
     @GetMapping
-    public FilmResponse<List<FilmEntity>> getAll(){
+    public FilmResponse<List<FilmEntity>> getAll(
+            @RequestParam(defaultValue = "0")int pageNumber,
+            @RequestParam(defaultValue = "10") int pageSize){
+
         try {
-            fs.getAll();
-            return frg.succsesResponse(fs.getAll(),"Sukses Tampil Semua Data");
+            Page<FilmEntity> filmResult = fs.getAll(pageNumber, pageSize);
+            List<FilmEntity> filmData = filmResult.getContent();
+            long totalItems = filmResult.getTotalElements();
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("X-Total-Count", String.valueOf(totalItems));
+
+            return frg.succsesResponse(ResponseEntity.ok().headers(headers).body(filmData),"Sukses Tampil Data");
         }
         catch (Exception e){
             return frg.failedResponse(e.getMessage());
@@ -94,14 +108,16 @@ public class FilmController {
 //    }// mau coba pakai ini tapi bad 500 gateway karena sql tidak bisa
 
     @DeleteMapping(value = "deleteFilm/{film_code}")
-    public void delFilm(@PathVariable String film_code){
+    public FilmEntity delFilm(@PathVariable String film_code){
         try {
-            fs.delFilm(film_code);
+            return fs.delFilm(film_code);
 
         }
-
-        catch (Exception e){
-
+        catch (EmptyResultDataAccessException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Film not found", e);
+        }
+        catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to delete Film", e);
         }
     }
 }

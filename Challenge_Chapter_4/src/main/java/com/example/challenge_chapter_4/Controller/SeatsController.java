@@ -1,15 +1,14 @@
 package com.example.challenge_chapter_4.Controller;
 
 import com.example.challenge_chapter_4.Model.SeatsEntity;
-import com.example.challenge_chapter_4.Model.StudioEntity;
 import com.example.challenge_chapter_4.Response.SeatsResponse;
 import com.example.challenge_chapter_4.Response.SeatsResponseGenerator;
 import com.example.challenge_chapter_4.Service.SeatsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,19 +21,37 @@ public class SeatsController {
     SeatsResponseGenerator srg;
 
     @GetMapping
-    public List<SeatsEntity> getAll(){
-        return ss.getAll();
+    public SeatsResponse<ResponseEntity<List<SeatsEntity>>> getAll(
+            @RequestParam(defaultValue = "0")int pageNumber,
+            @RequestParam(defaultValue = "10") int pageSize
+    ){
+        try {
+            Page<SeatsEntity> result = ss.getAll(pageNumber, pageSize);
+            List<SeatsEntity> data = result.getContent();
+            long totalItems = result.getTotalElements();
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("X-Total-Count", String.valueOf(totalItems));
+            return srg.succsesResponse(ResponseEntity.ok().headers(headers).body(data),"Sukses Tampil Data");
+        }
+        catch (Exception e){
+            return srg.failedResponse(e.getMessage());
+        }
     }
 
     @GetMapping(value = "Studios/{studio}/{nomor_kursi}")
     public SeatsResponse<SeatsEntity> getByStudio(@PathVariable char studio, @PathVariable Integer nomor_kursi){
-        SeatsEntity seats = ss.getByStudioSeats(studio, nomor_kursi);
-        if(seats != null){
-            return srg.succsesResponse1(seats,"Sukses Menampilkan Data " +seats.getNomor_kursi());
-            //return srg.succsesResponse2;
+        try {
+            SeatsEntity seats = ss.getByStudioSeats(studio, nomor_kursi);
+            if(seats != null){
+                return srg.succsesResponse(seats,"Sukses Menampilkan Data " +seats.getNomor_kursi());
+                //return srg.succsesResponse2;
+            }
+            else {
+                throw new RuntimeException("Not Found");
+            }
         }
-        else {
-            throw new RuntimeException("Not Found");
+         catch (Exception e){
+            return srg.failedResponse(e.getMessage());
         }
     }
 

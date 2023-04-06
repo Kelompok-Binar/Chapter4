@@ -17,8 +17,8 @@ public class StudioService {
     StudioInterface R;
 
 
-    public Page<StudioEntity> getAll(int pageNumber, int pageSize, String sortBy) {
-        Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy));
+    public Page<StudioEntity> getAll(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
 
         return R.findAll(pageable);
     }

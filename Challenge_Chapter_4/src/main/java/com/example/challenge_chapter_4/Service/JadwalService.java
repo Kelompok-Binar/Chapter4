@@ -3,6 +3,9 @@ package com.example.challenge_chapter_4.Service;
 import com.example.challenge_chapter_4.Model.JadwalEntity;
 import com.example.challenge_chapter_4.Repository.JadwalInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +15,10 @@ import java.util.Optional;
 public class JadwalService {
     @Autowired
     JadwalInterface R;
-    public List<JadwalEntity> getAll() {
-        return R.findAll();
+    public Page<JadwalEntity> getAll(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+
+        return R.findAll(pageable);
     }
 
     public JadwalEntity addJadwal(JadwalEntity param) {

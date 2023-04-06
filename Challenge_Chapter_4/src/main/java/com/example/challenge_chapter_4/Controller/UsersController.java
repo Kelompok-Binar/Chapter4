@@ -8,7 +8,13 @@ import com.example.challenge_chapter_4.Service.UsersService;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -21,8 +27,25 @@ public class UsersController {
     UserResponseGenerator urg;
 
     @GetMapping()
-    public List<UsersEntity> getAll(){
-        return us.getAll();
+    public UserResponse<ResponseEntity<List<UsersEntity>>> getAll(
+            @RequestParam(defaultValue = "0")int pageNumber,
+            @RequestParam(defaultValue = "10") int pageSize
+    ){
+        try {
+            Page<UsersEntity> userResult = us.getAll(pageNumber, pageSize);
+            List<UsersEntity> userData = userResult.getContent();
+//        int currentPage = userResult.getNumber();
+//        int totalPages = userResult.getTotalPages();
+            long totalItems = userResult.getTotalElements();
+
+            HttpHeaders userHeaders = new HttpHeaders();
+            userHeaders.add("X-Total-Count", String.valueOf(totalItems));
+
+            return urg.succsesResponse(ResponseEntity.ok().headers(userHeaders).body(userData),"Sukses Tampil Data");
+        }
+        catch (Exception e){
+            return urg.failedResponse(e.getMessage());
+        }
     }
 
     @GetMapping(value = "/findUser/{id_user}") //yang ada di dalam {} disamakan dengan
@@ -63,12 +86,15 @@ public class UsersController {
     }
 
     @DeleteMapping(value = "/deleteUser/{id_user}")
-    public void deleteUser(@PathVariable int id_user){
+    public UsersEntity deleteUser(@PathVariable int id_user){
         try {
-            us.delUser(id_user);
+            return us.delUser(id_user);
         }
-        catch (Exception e){
-
+        catch (EmptyResultDataAccessException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found", e);
+        }
+        catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to delete User", e);
         }
     }
 }
