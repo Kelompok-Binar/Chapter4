@@ -4,6 +4,7 @@ import com.example.challenge_chapter_4.Model.FilmEntity;
 import com.example.challenge_chapter_4.Response.FilmResponse;
 import com.example.challenge_chapter_4.Response.FilmResponseGenerator;
 import com.example.challenge_chapter_4.Service.FilmService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
@@ -37,7 +38,7 @@ fi.deleteById(filmCode)
 * */
 
 
-
+@Slf4j
 @RestController
 @RequestMapping(value ="/Film")
 public class FilmController {
@@ -57,10 +58,11 @@ public class FilmController {
             long totalItems = filmResult.getTotalElements();
             HttpHeaders headers = new HttpHeaders();
             headers.add("X-Total-Count", String.valueOf(totalItems));
-
+            log.info("Sukses Tampil Data");
             return frg.succsesResponse(ResponseEntity.ok().headers(headers).body(filmData),"Sukses Tampil Data");
         }
         catch (Exception e){
+            log.warn(String.valueOf(e));
             return frg.failedResponse(e.getMessage());
         }
     }
@@ -69,9 +71,11 @@ public class FilmController {
     public FilmResponse<List<FilmEntity>> getByFilm_name(@PathVariable String film_name){
         try {
             List<FilmEntity> film = fs.getByTitle(film_name);
+            log.info(String.valueOf(film), "Sukses Mencari Dara '" + film_name + "'");
             return frg.succsesResponse(film,"Sukses Mencari Data '" + film_name + "'");
         }
         catch (Exception e){
+            log.warn(String.valueOf(e));
             return frg.failedResponse(e.getMessage());
         }
 
@@ -82,9 +86,11 @@ public class FilmController {
     public FilmResponse<FilmEntity> addFilm(@RequestBody FilmEntity param){
         try {
             FilmEntity film = fs.addFilm(param);
-            return frg.succsesResponse(film,"Sukses Add Data" + film.getFilm_code()) ;
+            log.info(String.valueOf(film), "Sukses Add Data " + film.getFilm_code());
+            return frg.succsesResponse(film,"Sukses Add Data " + film.getFilm_code()) ;
         }
         catch (Exception e){
+            log.warn(String.valueOf(e));
             return frg.failedResponse(e.getMessage());
         }
     }
@@ -93,9 +99,11 @@ public class FilmController {
     public FilmResponse<FilmEntity> updateFilm(@RequestBody FilmEntity param){
         try {
             FilmEntity film = fs.updateFilm(param);
+            log.info(String.valueOf(film), "Sukses Update Data " + film.getFilm_code());
             return frg.succsesResponse(film,"Sukses Update Data " + param.getFilm_code());
         }
         catch (Exception e){
+            log.warn(String.valueOf(e));
             return frg.failedResponse(e.getMessage());
         }
     }
@@ -108,15 +116,19 @@ public class FilmController {
 //    }// mau coba pakai ini tapi bad 500 gateway karena sql tidak bisa
 
     @DeleteMapping(value = "deleteFilm/{film_code}")
-    public FilmEntity delFilm(@PathVariable String film_code){
+    public FilmResponse<FilmEntity> delFilm(@PathVariable String film_code){
         try {
-            return fs.delFilm(film_code);
+            FilmEntity film = fs.delFilm(film_code);
+            log.info(String.valueOf(film), "Sukses Menghapus Data " + film.getFilm_code());
+            return frg.succsesResponse(film, "Sukses Menghapus Data " + film.getFilm_code());
 
         }
         catch (EmptyResultDataAccessException e) {
+            log.warn(String.valueOf(e));
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Film not found", e);
         }
         catch (Exception e) {
+            log.error(String.valueOf(e));
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to delete Film", e);
         }
     }

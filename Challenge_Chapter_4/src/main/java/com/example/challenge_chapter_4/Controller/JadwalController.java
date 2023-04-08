@@ -4,6 +4,7 @@ import com.example.challenge_chapter_4.Model.JadwalEntity;
 import com.example.challenge_chapter_4.Response.JadwalResponse;
 import com.example.challenge_chapter_4.Response.JadwalResponseGenerator;
 import com.example.challenge_chapter_4.Service.JadwalService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping(value ="/Jadwal")
 public class JadwalController {
@@ -34,9 +36,11 @@ public class JadwalController {
             long totalItems = result.getTotalElements();
             HttpHeaders headers = new HttpHeaders();
             headers.add("X-Total-Count", String.valueOf(totalItems));
+            log.info("Sukses Tampil Data");
             return jrg.succsesResponse(ResponseEntity.ok().headers(headers).body(data),"Sukses Tampil Data");
         }
         catch (Exception e){
+            log.warn(String.valueOf(e));
             return jrg.failedResponse(e.getMessage());
         }
     }
@@ -45,9 +49,11 @@ public class JadwalController {
     public JadwalResponse<JadwalEntity> getById(@PathVariable int id_jadwal){
         try {
             JadwalEntity jadwal = js.getById(id_jadwal);
+            log.info(String.valueOf(jadwal),"Sukses Tampil Data " + jadwal.getId_jadwal());
             return jrg.succsesResponse(jadwal,"Sukses Tampil Data " + jadwal.getId_jadwal());
         }
         catch (Exception e){
+            log.warn(String.valueOf(e));
             return jrg.failedResponse(e.getMessage());
         }
     }
@@ -56,9 +62,11 @@ public class JadwalController {
     public JadwalResponse<JadwalEntity> addJadwal(@RequestBody JadwalEntity param){
         try {
             JadwalEntity jadwal = js.addJadwal(param);
+            log.info(String.valueOf(jadwal),"Sukses add Data " + jadwal.getId_jadwal());
             return jrg.succsesResponse(jadwal,"Sukses add Data " + jadwal.getId_jadwal());
         }
         catch(Exception e){
+            log.warn(String.valueOf(e));
             return jrg.failedResponse(e.getMessage());
         }
     }
@@ -67,22 +75,28 @@ public class JadwalController {
     public JadwalResponse<JadwalEntity> updateJadwal(@RequestBody JadwalEntity param){
         try {
             JadwalEntity jadwal = js.updateJadwal(param);
+            log.info(String.valueOf(jadwal), "Sukses Update Data " + jadwal.getId_jadwal());
             return jrg.succsesResponse(jadwal, "Sukses Update Data " + jadwal.getId_jadwal());
         }
         catch (Exception e){
+            log.warn(String.valueOf(e));
             return jrg.failedResponse(e.getMessage());
         }
     }
 
     @DeleteMapping(value = "/deleteJadwal/{id_jadwal}")
-    public void deleteJadwal(@PathVariable int id_jadwal){
+    public JadwalResponse<JadwalEntity> deleteJadwal(@PathVariable int id_jadwal){
         try {
-            js.deleteJadwal(id_jadwal);
+            JadwalEntity jadwal = js.deleteJadwal(id_jadwal);
+            log.info(String.valueOf(jadwal), "Sukses Delete Data " + jadwal.getId_jadwal());
+            return jrg.succsesResponse(jadwal, "Sukses Delete Data " + jadwal.getId_jadwal());
         }
         catch (EmptyResultDataAccessException e) {
+            log.warn(String.valueOf(e));
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Jadwal not found", e);
         }
         catch (Exception e) {
+            log.error(String.valueOf(e));
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to delete Jadwal", e);
         }
     }

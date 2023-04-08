@@ -47,7 +47,9 @@ public class JadwalService {
         return jadwalExsist;
     }
 
-    public void deleteJadwal(int idJadwal) {
+    public JadwalEntity deleteJadwal(int idJadwal) {
+        JadwalEntity delete = R.findById(idJadwal).get();
         R.deleteById(idJadwal);
+        return delete;
     }
 }

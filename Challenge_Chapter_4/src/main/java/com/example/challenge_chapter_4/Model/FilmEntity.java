@@ -12,6 +12,7 @@ import lombok.Setter;
 @Table(name = "film")
 public class FilmEntity {
 
+
     @Id
     @Getter
     @Setter

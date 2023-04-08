@@ -1,0 +1,4 @@
+2023-04-08T16:15:46.002+07:00  INFO 7328 --- [restartedMain] c.e.c.ChallengeChapter4Application       : Starting ChallengeChapter4Application using Java 17.0.2 with PID 7328 (E:\Intellij Project\Challenge_Chapter_4\target\classes started by EnVyx in E:\Intellij Project\Challenge_Chapter_4)
+2023-04-08T16:15:46.020+07:00  INFO 7328 --- [restartedMain] c.e.c.ChallengeChapter4Application       : No active profile set, falling back to 1 default profile: "default"
+2023-04-08T16:15:50.363+07:00  INFO 7328 --- [restartedMain] c.e.c.ChallengeChapter4Application       : Started ChallengeChapter4Application in 4.942 seconds (process running for 6.068)
+2023-04-08T16:15:58.005+07:00  INFO 7328 --- [http-nio-8080-exec-1] c.e.c.C.UsersController                  : Sukses Tampil Data
