@@ -75,7 +75,7 @@ public class JadwalController {
     public JadwalResponse<List<JadwalEntity>> addMultipleJadwal(@RequestBody List<JadwalEntity> param){
         try {
             List<JadwalEntity> jadwal = js.addMultipleJadwal(param);
-            log.info(String.valueOf(jadwal),"Sukses add Data " + jadwal);
+            log.info("Sukses add Data " + jadwal);
             return jrg.succsesResponse(jadwal,"Sukses add Data " + jadwal);
         }
         catch(Exception e){
