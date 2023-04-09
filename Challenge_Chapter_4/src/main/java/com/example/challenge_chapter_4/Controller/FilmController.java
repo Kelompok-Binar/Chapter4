@@ -100,7 +100,7 @@ public class FilmController {
     public FilmResponse<List<FilmEntity>> addMultipleFilm(@RequestBody List<FilmEntity> param){
         try {
             List<FilmEntity> film = fs.addMultipleFilm(param);
-            log.info(String.valueOf(film), "Sukses Add Data " + film);
+            log.info("Sukses Add Data " + film);
             return frg.succsesResponse(film,"Sukses Add Data " + film) ;
         }
         catch (Exception e){
