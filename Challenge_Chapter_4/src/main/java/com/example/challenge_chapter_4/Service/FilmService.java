@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +36,21 @@ public class FilmService {
             return R.save(param);
         }
 
+    }
+
+    public List<FilmEntity> addMultipleFilm(List<FilmEntity> param){
+        List<FilmEntity> list = new ArrayList<>();
+
+        for(FilmEntity film : param){
+            Optional<FilmEntity> filmExsist = R.findById(film.getFilm_code());
+            if(filmExsist.isPresent()){
+                throw new RuntimeException("Film Code " + film.getFilm_code() + " Sudah Ada");
+            }
+            else {
+                list.add(R.save(film));
+            }
+        }
+        return list;
     }
 
     public FilmEntity updateFilm(FilmEntity param){

@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -88,6 +89,19 @@ public class FilmController {
             FilmEntity film = fs.addFilm(param);
             log.info(String.valueOf(film), "Sukses Add Data " + film.getFilm_code());
             return frg.succsesResponse(film,"Sukses Add Data " + film.getFilm_code()) ;
+        }
+        catch (Exception e){
+            log.warn(String.valueOf(e));
+            return frg.failedResponse(e.getMessage());
+        }
+    }
+
+    @PostMapping(value = "/addMultipleFilm")
+    public FilmResponse<List<FilmEntity>> addMultipleFilm(@RequestBody List<FilmEntity> param){
+        try {
+            List<FilmEntity> film = fs.addMultipleFilm(param);
+            log.info(String.valueOf(film), "Sukses Add Data " + film);
+            return frg.succsesResponse(film,"Sukses Add Data " + film) ;
         }
         catch (Exception e){
             log.warn(String.valueOf(e));

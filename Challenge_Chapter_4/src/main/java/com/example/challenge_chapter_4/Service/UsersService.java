@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,6 +45,22 @@ public class UsersService {
         }
 
     }
+
+    public List<UsersEntity> addMultipleUsers(List<UsersEntity> param) {
+        List<UsersEntity> list = new ArrayList<>();
+
+        for(UsersEntity user : param){
+            Optional<UsersEntity> userExsist = R.findById(user.getId_user());
+            if(userExsist.isPresent()){
+                throw new RuntimeException("User ID " +user.getId_user() + " Sudah Ada");
+            }
+            else{
+                list.add(R.save(user));
+            }
+        }
+        return list;
+    }
+
 
     public UsersEntity delUser(int param){
         UsersEntity delete = R.findById(param).get();

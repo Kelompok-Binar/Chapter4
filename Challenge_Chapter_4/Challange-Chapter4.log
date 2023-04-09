@@ -2,3 +2,22 @@
 2023-04-08T16:15:46.020+07:00  INFO 7328 --- [restartedMain] c.e.c.ChallengeChapter4Application       : No active profile set, falling back to 1 default profile: "default"
 2023-04-08T16:15:50.363+07:00  INFO 7328 --- [restartedMain] c.e.c.ChallengeChapter4Application       : Started ChallengeChapter4Application in 4.942 seconds (process running for 6.068)
 2023-04-08T16:15:58.005+07:00  INFO 7328 --- [http-nio-8080-exec-1] c.e.c.C.UsersController                  : Sukses Tampil Data
+2023-04-09T16:05:14.674+07:00  INFO 22960 --- [restartedMain] c.e.c.ChallengeChapter4Application       : Starting ChallengeChapter4Application using Java 17.0.2 with PID 22960 (E:\Intellij Project\Challenge_Chapter_4\target\classes started by EnVyx in E:\Intellij Project\Challenge_Chapter_4)
+2023-04-09T16:05:14.704+07:00  INFO 22960 --- [restartedMain] c.e.c.ChallengeChapter4Application       : No active profile set, falling back to 1 default profile: "default"
+2023-04-09T16:05:23.477+07:00  INFO 22960 --- [restartedMain] c.e.c.ChallengeChapter4Application       : Started ChallengeChapter4Application in 10.371 seconds (process running for 39.026)
+2023-04-09T16:05:30.076+07:00  INFO 22960 --- [http-nio-8080-exec-1] c.e.c.C.UsersController                  : Sukses Tampil Data
+2023-04-09T16:06:25.309+07:00  INFO 22960 --- [http-nio-8080-exec-3] c.e.c.C.FilmController                   : Sukses Tampil Data
+2023-04-09T16:06:50.546+07:00  INFO 22960 --- [http-nio-8080-exec-7] c.e.c.C.FilmController                   : [FilmEntity{film_code='M01', film_name='Api', tayang_atau_tidak='Tayang'}, FilmEntity{film_code='M02', film_name='Kuda', tayang_atau_tidak='Tayang'}]
+2023-04-09T16:07:28.894+07:00  INFO 22960 --- [http-nio-8080-exec-10] c.e.c.C.FilmController                   : Sukses Tampil Data
+2023-04-09T16:29:54.082+07:00  INFO 22144 --- [restartedMain] c.e.c.ChallengeChapter4Application       : Starting ChallengeChapter4Application using Java 17.0.2 with PID 22144 (E:\Intellij Project\Challenge_Chapter_4\target\classes started by EnVyx in E:\Intellij Project\Challenge_Chapter_4)
+2023-04-09T16:29:54.107+07:00  INFO 22144 --- [restartedMain] c.e.c.ChallengeChapter4Application       : No active profile set, falling back to 1 default profile: "default"
+2023-04-09T16:29:59.151+07:00  INFO 22144 --- [restartedMain] c.e.c.ChallengeChapter4Application       : Started ChallengeChapter4Application in 5.725 seconds (process running for 7.383)
+2023-04-09T16:30:18.445+07:00  INFO 22144 --- [http-nio-8080-exec-2] c.e.c.C.UsersController                  : Sukses Tampil Data
+2023-04-09T16:32:11.265+07:00  WARN 22144 --- [http-nio-8080-exec-6] c.e.c.C.UsersController                  : java.lang.RuntimeException: User ID 3 Sudah Ada
+2023-04-09T16:32:21.366+07:00  INFO 22144 --- [http-nio-8080-exec-7] c.e.c.C.UsersController                  : Sukses Tampil Data
+2023-04-09T16:33:19.725+07:00  INFO 22144 --- [http-nio-8080-exec-9] c.e.c.C.UsersController                  : [UsersEntity{id_user=4, username='Huda', email='Huda@gmail.com', password='Huda'}, UsersEntity{id_user=5, username='Lumine', email='Lumine0912@gmail.com', password='Oboki9012'}]
+2023-04-09T16:33:26.008+07:00  INFO 22144 --- [http-nio-8080-exec-10] c.e.c.C.UsersController                  : Sukses Tampil Data
+2023-04-09T16:33:38.239+07:00  INFO 22144 --- [http-nio-8080-exec-1] c.e.c.C.JadwalController                 : Sukses Tampil Data
+2023-04-09T16:34:32.883+07:00  INFO 22144 --- [http-nio-8080-exec-2] c.e.c.C.JadwalController                 : [JadwalEntity(id_jadwal=3, film_code=001, tanggal_tayang=2023-04-03, jam_mulai=13:25:00, jam_selesai=15:20:00, harga_tiket=35000), JadwalEntity(id_jadwal=4, film_code=002, tanggal_tayang=2023-04-06, jam_mulai=14:25:00, jam_selesai=17:20:00, harga_tiket=35000)]
+2023-04-09T16:34:40.084+07:00  INFO 22144 --- [http-nio-8080-exec-4] c.e.c.C.JadwalController                 : Sukses Tampil Data
+2023-04-09T16:34:47.492+07:00  INFO 22144 --- [http-nio-8080-exec-5] c.e.c.C.FilmController                   : Sukses Tampil Data

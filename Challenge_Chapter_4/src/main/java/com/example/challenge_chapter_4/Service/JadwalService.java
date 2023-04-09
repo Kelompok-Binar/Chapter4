@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,12 +25,27 @@ public class JadwalService {
     public JadwalEntity addJadwal(JadwalEntity param) {
         Optional<JadwalEntity> jadwalExsist = R.findById(param.getId_jadwal());
         if(jadwalExsist.isPresent()){
-            throw new RuntimeException("Film Id " + param.getId_jadwal() + " Sudah Ada") ;
+            throw new RuntimeException("Jadwal Id " + param.getId_jadwal() + " Sudah Ada") ;
         }
         else{
             return R.save(param);
         }
 
+    }
+
+    public List<JadwalEntity> addMultipleJadwal(List<JadwalEntity> param) {
+        List<JadwalEntity> list = new ArrayList<>();
+
+        for(JadwalEntity jadwal : param){
+            Optional<JadwalEntity> jadwalExsist = R.findById(jadwal.getId_jadwal());
+            if(jadwalExsist.isPresent()){
+                throw new RuntimeException("Jadwal Id " +jadwal.getId_jadwal() + " Sudah ada");
+            }
+            else {
+                list.add(R.save(jadwal));
+            }
+        }
+        return list;
     }
 
     public JadwalEntity getById(int idJadwal) {
@@ -52,4 +68,6 @@ public class JadwalService {
         R.deleteById(idJadwal);
         return delete;
     }
+
+
 }

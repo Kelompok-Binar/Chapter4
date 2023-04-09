@@ -71,6 +71,19 @@ public class JadwalController {
         }
     }
 
+    @PostMapping(value = "/addMultipleJadwal")
+    public JadwalResponse<List<JadwalEntity>> addMultipleJadwal(@RequestBody List<JadwalEntity> param){
+        try {
+            List<JadwalEntity> jadwal = js.addMultipleJadwal(param);
+            log.info(String.valueOf(jadwal),"Sukses add Data " + jadwal);
+            return jrg.succsesResponse(jadwal,"Sukses add Data " + jadwal);
+        }
+        catch(Exception e){
+            log.warn(String.valueOf(e));
+            return jrg.failedResponse(e.getMessage());
+        }
+    }
+
     @PutMapping(value = "/updateJadwal")
     public JadwalResponse<JadwalEntity> updateJadwal(@RequestBody JadwalEntity param){
         try {

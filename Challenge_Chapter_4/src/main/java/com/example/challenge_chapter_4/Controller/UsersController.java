@@ -79,6 +79,21 @@ public class UsersController {
 
     }
 
+    @PostMapping(value = "/addMultipleUsers")
+    public UserResponse<List<UsersEntity>> addMultipleUsers(@RequestBody List<UsersEntity> param){
+        try {
+            List<UsersEntity> user = us.addMultipleUsers(param);
+            log.info(String.valueOf(user), "Sukses Menambahkan Data " + user);
+            return urg.succsesResponse(user, "Sukses Menambahkan Data " + user);
+        }
+        catch (Exception e){
+            log.warn(String.valueOf(e));
+            return urg.failedResponse(e.getMessage());
+        }
+
+    }
+
+
     @PutMapping(value = "/updateUser")
     public UserResponse<UsersEntity> updateUser(@RequestBody UsersEntity param){
 
