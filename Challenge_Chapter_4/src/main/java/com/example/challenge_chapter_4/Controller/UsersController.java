@@ -113,7 +113,7 @@ public class UsersController {
     public UserResponse<UsersEntity> deleteUser(@PathVariable int id_user){
         try {
             UsersEntity user = us.delUser(id_user);
-            log.info(String.valueOf(user), "Sukses Menghapus Data " + user.getId_user());
+            log.info("Sukses Menghapus Data " + user.getId_user());
             return urg.succsesResponse(user, "Sukses Menghapus Data " + user.getId_user());
         }
         catch (EmptyResultDataAccessException e) {

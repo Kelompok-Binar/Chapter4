@@ -65,4 +65,12 @@ public class FilmService {
         R.deleteById(param);
         return delete;
     }
+
+    public List<FilmEntity> getTayang() {
+        return R.findFilmTayang();
+    }
+
+    public List<FilmEntity> getByFilmJadwal(String film_name){
+        return R.getByFilmJadwal(film_name);
+    }
 }

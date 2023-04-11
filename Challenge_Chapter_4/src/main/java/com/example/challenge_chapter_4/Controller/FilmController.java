@@ -83,6 +83,32 @@ public class FilmController {
 
     }
 
+    @GetMapping(value = "/Tayang")
+    public FilmResponse<List<FilmEntity>> getFilmTTayang(){
+        try {
+            List<FilmEntity> film = fs.getTayang();
+            log.info(String.valueOf(film));
+            return frg.succsesResponse(film,"Sukses Mencari Film Tayang");
+        }
+        catch (Exception e){
+            log.warn(String.valueOf(e));
+            return frg.failedResponse(e.getMessage());
+        }
+    }
+
+    @GetMapping(value = "/Jadwal/{film_name}")
+    public FilmResponse<List<FilmEntity>> getJadwalFilm(@PathVariable String film_name){
+        try {
+            List<FilmEntity> film = fs.getByFilmJadwal(film_name);
+            log.info(String.valueOf(film));
+            return frg.succsesResponse(film,"Sukses Mencari Jadwal Film");
+        }
+        catch (Exception e){
+            log.warn(String.valueOf(e));
+            return frg.failedResponse(e.getMessage());
+        }
+    }
+
     @PostMapping(value = "/addFilm")
     public FilmResponse<FilmEntity> addFilm(@RequestBody FilmEntity param){
         try {
@@ -100,7 +126,7 @@ public class FilmController {
     public FilmResponse<List<FilmEntity>> addMultipleFilm(@RequestBody List<FilmEntity> param){
         try {
             List<FilmEntity> film = fs.addMultipleFilm(param);
-            log.info(String.valueOf(film), "Sukses Add Data " + film);
+            log.info("Sukses Add Data " + film);
             return frg.succsesResponse(film,"Sukses Add Data " + film) ;
         }
         catch (Exception e){

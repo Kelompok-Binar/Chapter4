@@ -21,3 +21,63 @@
 2023-04-09T16:34:32.883+07:00  INFO 22144 --- [http-nio-8080-exec-2] c.e.c.C.JadwalController                 : [JadwalEntity(id_jadwal=3, film_code=001, tanggal_tayang=2023-04-03, jam_mulai=13:25:00, jam_selesai=15:20:00, harga_tiket=35000), JadwalEntity(id_jadwal=4, film_code=002, tanggal_tayang=2023-04-06, jam_mulai=14:25:00, jam_selesai=17:20:00, harga_tiket=35000)]
 2023-04-09T16:34:40.084+07:00  INFO 22144 --- [http-nio-8080-exec-4] c.e.c.C.JadwalController                 : Sukses Tampil Data
 2023-04-09T16:34:47.492+07:00  INFO 22144 --- [http-nio-8080-exec-5] c.e.c.C.FilmController                   : Sukses Tampil Data
+2023-04-09T16:41:08.516+07:00  INFO 23084 --- [restartedMain] c.e.c.ChallengeChapter4Application       : Starting ChallengeChapter4Application using Java 17.0.2 with PID 23084 (E:\Intellij Project\Challenge_Chapter_4\target\classes started by EnVyx in E:\Intellij Project\Challenge_Chapter_4)
+2023-04-09T16:41:08.560+07:00  INFO 23084 --- [restartedMain] c.e.c.ChallengeChapter4Application       : No active profile set, falling back to 1 default profile: "default"
+2023-04-09T16:41:16.760+07:00  INFO 23084 --- [restartedMain] c.e.c.ChallengeChapter4Application       : Started ChallengeChapter4Application in 8.96 seconds (process running for 10.609)
+2023-04-09T16:42:05.494+07:00 ERROR 23084 --- [http-nio-8080-exec-3] o.h.e.j.s.SqlExceptionHelper             : ERROR: duplicate key value violates unique constraint "jadwal_film_code_key"
+  Detail: Key (film_code)=(001) already exists.
+2023-04-09T16:42:05.529+07:00  WARN 23084 --- [http-nio-8080-exec-3] c.e.c.C.JadwalController                 : org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [jadwal_film_code_key]
+2023-04-09T16:42:39.181+07:00  INFO 23084 --- [http-nio-8080-exec-4] c.e.c.C.JadwalController                 : Sukses Tampil Data
+2023-04-09T16:43:01.197+07:00  INFO 23084 --- [http-nio-8080-exec-8] c.e.c.C.JadwalController                 : Sukses add Data [JadwalEntity(id_jadwal=5, film_code=003, tanggal_tayang=2023-04-03, jam_mulai=13:25:00, jam_selesai=15:20:00, harga_tiket=35000), JadwalEntity(id_jadwal=6, film_code=004, tanggal_tayang=2023-04-06, jam_mulai=14:25:00, jam_selesai=17:20:00, harga_tiket=35000)]
+2023-04-11T14:18:34.262+07:00  INFO 19080 --- [restartedMain] c.e.c.ChallengeChapter4Application       : Starting ChallengeChapter4Application using Java 17.0.2 with PID 19080 (E:\Intellij Project\Challenge_Chapter_4\target\classes started by EnVyx in E:\Intellij Project\Challenge_Chapter_4)
+2023-04-11T14:18:34.333+07:00  INFO 19080 --- [restartedMain] c.e.c.ChallengeChapter4Application       : No active profile set, falling back to 1 default profile: "default"
+2023-04-11T14:18:42.288+07:00  INFO 19080 --- [restartedMain] c.e.c.ChallengeChapter4Application       : Started ChallengeChapter4Application in 8.813 seconds (process running for 10.437)
+2023-04-11T14:18:47.902+07:00  INFO 19080 --- [http-nio-8080-exec-1] c.e.c.C.JadwalController                 : Sukses Tampil Data
+2023-04-11T14:18:55.770+07:00  INFO 19080 --- [http-nio-8080-exec-3] c.e.c.C.FilmController                   : Sukses Tampil Data
+2023-04-11T14:31:47.818+07:00  INFO 1996 --- [restartedMain] c.e.c.ChallengeChapter4Application       : Starting ChallengeChapter4Application using Java 17.0.2 with PID 1996 (E:\Intellij Project\Challenge_Chapter_4\target\classes started by EnVyx in E:\Intellij Project\Challenge_Chapter_4)
+2023-04-11T14:31:47.838+07:00  INFO 1996 --- [restartedMain] c.e.c.ChallengeChapter4Application       : No active profile set, falling back to 1 default profile: "default"
+2023-04-11T14:32:06.752+07:00  INFO 1996 --- [restartedMain] c.e.c.ChallengeChapter4Application       : Started ChallengeChapter4Application in 23.389 seconds (process running for 26.887)
+2023-04-11T14:33:02.577+07:00  WARN 1996 --- [http-nio-8080-exec-1] c.e.c.C.FilmController                   : org.springframework.dao.InvalidDataAccessResourceUsageException: Named parameter not bound : tayang_atau_tidak
+2023-04-11T14:34:06.169+07:00  INFO 3272 --- [restartedMain] c.e.c.ChallengeChapter4Application       : Starting ChallengeChapter4Application using Java 17.0.2 with PID 3272 (E:\Intellij Project\Challenge_Chapter_4\target\classes started by EnVyx in E:\Intellij Project\Challenge_Chapter_4)
+2023-04-11T14:34:06.182+07:00  INFO 3272 --- [restartedMain] c.e.c.ChallengeChapter4Application       : No active profile set, falling back to 1 default profile: "default"
+2023-04-11T14:34:12.080+07:00  INFO 3272 --- [restartedMain] c.e.c.ChallengeChapter4Application       : Started ChallengeChapter4Application in 6.683 seconds (process running for 8.2)
+2023-04-11T14:34:21.382+07:00  INFO 3272 --- [http-nio-8080-exec-1] c.e.c.C.FilmController                   : []
+2023-04-11T14:34:31.657+07:00  INFO 3272 --- [http-nio-8080-exec-3] c.e.c.C.FilmController                   : Sukses Tampil Data
+2023-04-11T14:34:44.582+07:00  INFO 3272 --- [http-nio-8080-exec-4] c.e.c.C.FilmController                   : []
+2023-04-11T14:35:08.690+07:00  INFO 9536 --- [restartedMain] c.e.c.ChallengeChapter4Application       : Starting ChallengeChapter4Application using Java 17.0.2 with PID 9536 (E:\Intellij Project\Challenge_Chapter_4\target\classes started by EnVyx in E:\Intellij Project\Challenge_Chapter_4)
+2023-04-11T14:35:08.704+07:00  INFO 9536 --- [restartedMain] c.e.c.ChallengeChapter4Application       : No active profile set, falling back to 1 default profile: "default"
+2023-04-11T14:35:14.974+07:00  INFO 9536 --- [restartedMain] c.e.c.ChallengeChapter4Application       : Started ChallengeChapter4Application in 6.987 seconds (process running for 8.272)
+2023-04-11T14:35:30.306+07:00  INFO 9536 --- [http-nio-8080-exec-1] c.e.c.C.FilmController                   : [FilmEntity{film_code='H01', film_name='Beranak Dalam Kubur', tayang_atau_tidak='Sedang Tayang'}, FilmEntity{film_code='L01', film_name='John Wick: Chapter 4', tayang_atau_tidak='Sedang Tayang'}, FilmEntity{film_code='L02', film_name='Ant-Man and the Wasp: Quantumania', tayang_atau_tidak='Sedang Tayang'}]
+2023-04-11T14:46:57.955+07:00  INFO 9536 --- [http-nio-8080-exec-4] c.e.c.C.FilmController                   : Sukses Tampil Data
+2023-04-11T14:48:08.968+07:00  INFO 9536 --- [http-nio-8080-exec-7] c.e.c.C.FilmController                   : FilmEntity{film_code='M02', film_name='Jaran', tayang_atau_tidak='Tidak Tayang'}
+2023-04-11T14:48:16.441+07:00  INFO 9536 --- [http-nio-8080-exec-9] c.e.c.C.FilmController                   : Sukses Tampil Data
+2023-04-11T14:48:40.279+07:00  WARN 9536 --- [http-nio-8080-exec-10] c.e.c.C.FilmController                   : java.util.NoSuchElementException: No value present
+2023-04-11T14:51:52.055+07:00 ERROR 9536 --- [http-nio-8080-exec-3] c.e.c.C.FilmController                   : java.util.NoSuchElementException: No value present
+2023-04-11T14:52:02.933+07:00  INFO 9536 --- [http-nio-8080-exec-4] c.e.c.C.FilmController                   : Sukses Tampil Data
+2023-04-11T14:52:23.504+07:00  INFO 9536 --- [http-nio-8080-exec-6] c.e.c.C.FilmController                   : FilmEntity{film_code='M02', film_name='Jaran', tayang_atau_tidak='Tidak Tayang'}
+2023-04-11T14:52:29.774+07:00  INFO 9536 --- [http-nio-8080-exec-8] c.e.c.C.FilmController                   : Sukses Tampil Data
+2023-04-11T14:53:13.976+07:00  INFO 9536 --- [http-nio-8080-exec-7] c.e.c.C.FilmController                   : Sukses Tampil Data
+2023-04-11T14:53:23.425+07:00  INFO 9536 --- [http-nio-8080-exec-9] c.e.c.C.FilmController                   : Sukses Tampil Data
+2023-04-11T14:53:35.596+07:00  INFO 9536 --- [http-nio-8080-exec-10] c.e.c.C.FilmController                   : Sukses Tampil Data
+2023-04-11T14:53:49.648+07:00  INFO 9536 --- [http-nio-8080-exec-2] c.e.c.C.FilmController                   : Sukses Tampil Data
+2023-04-11T14:53:53.624+07:00  INFO 9536 --- [http-nio-8080-exec-1] c.e.c.C.FilmController                   : Sukses Tampil Data
+2023-04-11T14:53:57.274+07:00  INFO 9536 --- [http-nio-8080-exec-3] c.e.c.C.FilmController                   : Sukses Tampil Data
+2023-04-11T14:54:02.146+07:00  INFO 9536 --- [http-nio-8080-exec-5] c.e.c.C.FilmController                   : Sukses Tampil Data
+2023-04-11T14:54:10.050+07:00  INFO 9536 --- [http-nio-8080-exec-4] c.e.c.C.FilmController                   : Sukses Tampil Data
+2023-04-11T14:54:19.559+07:00  INFO 9536 --- [http-nio-8080-exec-6] c.e.c.C.FilmController                   : Sukses Tampil Data
+2023-04-11T14:54:26.317+07:00  INFO 9536 --- [http-nio-8080-exec-8] c.e.c.C.FilmController                   : Sukses Tampil Data
+2023-04-11T14:57:22.317+07:00  INFO 14004 --- [restartedMain] c.e.c.ChallengeChapter4Application       : Starting ChallengeChapter4Application using Java 17.0.2 with PID 14004 (E:\Intellij Project\Challenge_Chapter_4\target\classes started by EnVyx in E:\Intellij Project\Challenge_Chapter_4)
+2023-04-11T14:57:22.333+07:00  INFO 14004 --- [restartedMain] c.e.c.ChallengeChapter4Application       : No active profile set, falling back to 1 default profile: "default"
+2023-04-11T14:57:31.964+07:00  INFO 14004 --- [restartedMain] c.e.c.ChallengeChapter4Application       : Started ChallengeChapter4Application in 10.748 seconds (process running for 17.529)
+2023-04-11T14:58:05.585+07:00  WARN 14004 --- [http-nio-8080-exec-1] c.e.c.C.FilmController                   : org.springframework.dao.IncorrectResultSizeDataAccessException: query did not return a unique result: 2
+2023-04-11T14:58:22.476+07:00  INFO 14004 --- [http-nio-8080-exec-3] c.e.c.C.FilmController                   : null
+2023-04-11T14:58:22.479+07:00  WARN 14004 --- [http-nio-8080-exec-3] c.e.c.C.FilmController                   : java.lang.NullPointerException: Cannot invoke "com.example.challenge_chapter_4.Model.FilmEntity.getFilm_name()" because "film" is null
+2023-04-11T14:58:26.568+07:00  INFO 14004 --- [http-nio-8080-exec-4] c.e.c.C.FilmController                   : FilmEntity{film_code='L01', film_name='John Wick: Chapter 4', tayang_atau_tidak='Sedang Tayang'}
+2023-04-11T14:58:33.517+07:00  INFO 14004 --- [http-nio-8080-exec-5] c.e.c.C.FilmController                   : FilmEntity{film_code='L01', film_name='John Wick: Chapter 4', tayang_atau_tidak='Sedang Tayang'}
+2023-04-11T14:58:39.114+07:00  INFO 14004 --- [http-nio-8080-exec-6] c.e.c.C.FilmController                   : Sukses Tampil Data
+2023-04-11T14:58:50.394+07:00  INFO 14004 --- [http-nio-8080-exec-7] c.e.c.C.FilmController                   : FilmEntity{film_code='L01', film_name='John Wick: Chapter 4', tayang_atau_tidak='Sedang Tayang'}
+2023-04-11T14:58:53.285+07:00  WARN 14004 --- [http-nio-8080-exec-8] c.e.c.C.FilmController                   : org.springframework.dao.IncorrectResultSizeDataAccessException: query did not return a unique result: 2
+2023-04-11T15:02:28.833+07:00  INFO 18688 --- [restartedMain] c.e.c.ChallengeChapter4Application       : Starting ChallengeChapter4Application using Java 17.0.2 with PID 18688 (E:\Intellij Project\Challenge_Chapter_4\target\classes started by EnVyx in E:\Intellij Project\Challenge_Chapter_4)
+2023-04-11T15:02:29.025+07:00  INFO 18688 --- [restartedMain] c.e.c.ChallengeChapter4Application       : No active profile set, falling back to 1 default profile: "default"
+2023-04-11T15:02:35.071+07:00  INFO 18688 --- [restartedMain] c.e.c.ChallengeChapter4Application       : Started ChallengeChapter4Application in 7.33 seconds (process running for 8.643)
+2023-04-11T15:02:41.091+07:00  INFO 18688 --- [http-nio-8080-exec-1] c.e.c.C.FilmController                   : [FilmEntity{film_code='L01', film_name='John Wick: Chapter 4', tayang_atau_tidak='Sedang Tayang'}, FilmEntity{film_code='L02', film_name='Ant-Man and the Wasp: Quantumania', tayang_atau_tidak='Sedang Tayang'}]
