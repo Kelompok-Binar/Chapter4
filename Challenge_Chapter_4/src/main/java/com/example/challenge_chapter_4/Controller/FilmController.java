@@ -97,7 +97,7 @@ public class FilmController {
     }
 
     @GetMapping(value = "/Jadwal/{film_name}")
-    public FilmResponse<List<FilmEntity>> getJadwalFilm(@PathVariable String film_name){
+        public FilmResponse<List<FilmEntity>> getJadwalFilm(@PathVariable String film_name){
         try {
             List<FilmEntity> film = fs.getByFilmJadwal(film_name);
             log.info(String.valueOf(film));

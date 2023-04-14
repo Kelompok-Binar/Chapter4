@@ -83,7 +83,7 @@ public class UsersController {
     public UserResponse<List<UsersEntity>> addMultipleUsers(@RequestBody List<UsersEntity> param){
         try {
             List<UsersEntity> user = us.addMultipleUsers(param);
-            log.info("Sukses Menambahkan Data " + user);
+            log.info(String.valueOf(user), "Sukses Menambahkan Data " + user);
             return urg.succsesResponse(user, "Sukses Menambahkan Data " + user);
         }
         catch (Exception e){

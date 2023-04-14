@@ -1,11 +1,11 @@
 package com.example.challenge_chapter_4.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -23,6 +23,9 @@ public class FilmEntity {
     @Getter
     @Setter
     private String tayang_atau_tidak;
+
+    @OneToMany(mappedBy = "film_code", cascade = CascadeType.ALL)
+    private List<JadwalEntity> jadwal;
 
     @Override
     public String toString() {
