@@ -60,7 +60,7 @@ public class JadwalService {
         jadwalExsist.setJam_mulai(param.getJam_mulai());
         jadwalExsist.setJam_selesai(param.getJam_selesai());
 
-        return jadwalExsist;
+        return R.save(jadwalExsist);
     }
 
     public JadwalEntity deleteJadwal(int idJadwal) {
